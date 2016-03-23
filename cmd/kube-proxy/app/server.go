@@ -243,9 +243,12 @@ func NewProxyServerDefault(config *options.ProxyServerConfig) (*ProxyServer, err
 	// only notify on changes, and the initial update (on process start) may be lost if no handlers
 	// are registered yet.
 	serviceConfig := proxyconfig.NewServiceConfig()
+    //对于service更新时的回调函数进行注册
 	serviceConfig.RegisterHandler(proxier)
 
 	endpointsConfig := proxyconfig.NewEndpointsConfig()
+    
+    
 	endpointsConfig.RegisterHandler(endpointsHandler)
 
 	proxyconfig.NewSourceAPI(

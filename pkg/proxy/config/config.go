@@ -203,6 +203,7 @@ func NewServiceConfig() *ServiceConfig {
 	return &ServiceConfig{mux, bcaster, store}
 }
 
+//RegisterHandler 这里是对Service部分更新时所需要的listener注册的地方，将onUpdate函数调用的函数注册成了OnServiceUpdate
 func (c *ServiceConfig) RegisterHandler(handler ServiceConfigHandler) {
 	c.bcaster.Add(config.ListenerFunc(func(instance interface{}) {
 		glog.V(3).Infof("Calling handler.OnServiceUpdate()")
